@@ -3,7 +3,7 @@
 
 void getNames(int n, char arr[][10]);
 void getGrades(int numStudent, int numAssign, int arar1[][numStudent], char arr[][10]);
-int average();
+void average(int numAssign, int numStudent, int arr4[numAssign][numStudent], int sumArr[numAssign][numStudent]);
 void finalGrades(int numStudent, int numAssign,int grades[][numStudent], char names[][10]);
 
 int main() {
@@ -42,11 +42,11 @@ int main() {
 	
 	puts("");
 	
-	average(numAssign, numStudent, grade);
-	
-	puts("");
-	
 	finalGrades(numStudent, numAssign, grade, names);
+	
+	int sumArr[numAssign][numStudent];
+	
+	average(numAssign, numStudent, grade, sumArr);
 	
 }
 
@@ -65,7 +65,6 @@ void getGrades(int numStudent, int numAssign, int arr1[numAssign][numStudent], c
 	
 	int i;
 	int j;
-	char garb;
 	
 	for (i = 0; i < numAssign; i++) {
 		
@@ -79,33 +78,44 @@ void getGrades(int numStudent, int numAssign, int arr1[numAssign][numStudent], c
 	
 }
 
-int average(int numAssign, int numStudent, int arr3[numAssign][numStudent]) {
+void average(int numAssign, int numStudent, int arr3[numAssign][numStudent], int sumArr[numAssign][numStudent]) {
 	
-	int i;
-	int j;
-	int x;
-	int sum;
+	int i = 0;
+	int j = 0;
+	int sum = 0;
+	int avg = 0;
 	
-	for (i = 0; i < numStudent; i++) {
+	for ( j = 0; j < numStudent; j++){
+		sum = 0;
+		for (i = 0; i < numAssign; i++) {
+	
+			sum = arr3[i][j] + sum;
 		
-		for (j = 0; j < numAssign; j++) {
-			
-			for(x = 0; x < numStudent; x++) {
-				
-				sum = arr3[i][x];
-				
-				printf("'%d'", sum);
-			}
-			
 		}
 		
-		//printf("%10d ", sum);
+		avg = sum/numAssign;
 		
-		puts("");
+		if (avg >=90) {
+			printf("%9sA", " ");
+		}
+		else if (avg >= 80) {
+			printf("%9sB", " ");
+		}
+		else if (avg >= 70) {
+			printf("%9sC", " ");
+		}
+		else if (avg >= 60) {
+			printf("%9sD", " ");
+		}
+		else if (avg >= 50) {
+			printf("%9sF", " ");
+		}
 	}
-	
+
 	
 }
+	
+
 
 void finalGrades(int numStudent, int numAssign, int arr4[numAssign][numStudent], char arr5[numStudent][10]) {
 	
